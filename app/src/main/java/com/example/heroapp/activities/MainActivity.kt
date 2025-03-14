@@ -2,6 +2,7 @@ package com.example.heroapp.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -44,6 +45,11 @@ class MainActivity : AppCompatActivity() {
 
         getRetrofit()
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+    }
     fun getRetrofit() {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://www.superheroapi.com/api.php/7252591128153666/")
@@ -53,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         val service = retrofit.create(SuperheroService::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
+            try {
             val result = service.findSuperheroByName("super")
 
             superheroList = result.results
@@ -61,6 +68,9 @@ class MainActivity : AppCompatActivity() {
                 adapter.items = superheroList
                 adapter.notifyDataSetChanged()
             }
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
         }
     }
 }
