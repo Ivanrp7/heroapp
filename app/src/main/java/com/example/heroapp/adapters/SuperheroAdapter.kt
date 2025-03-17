@@ -11,7 +11,7 @@ import com.example.heroapp.R
 import com.example.heroapp.data.Superhero
 import com.squareup.picasso.Picasso
 
-class SuperheroAdapter(var items: List<Superhero>) : Adapter<SuperheroViewHolder>() {
+class SuperheroAdapter(var items: List<Superhero>, val onClick: (Int) -> Unit) : Adapter<SuperheroViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperheroViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_superhero, parent, false)
         return SuperheroViewHolder(view)
@@ -22,6 +22,9 @@ class SuperheroAdapter(var items: List<Superhero>) : Adapter<SuperheroViewHolder
     override fun onBindViewHolder(holder: SuperheroViewHolder, position: Int) {
         val superhero = items[position]
         holder.render(superhero)
+        holder.itemView.setOnClickListener {
+            onClick(position)
+        }
     }
 
 }

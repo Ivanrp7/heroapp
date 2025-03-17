@@ -6,7 +6,7 @@ import retrofit2.http.Path
 interface SuperheroService {
 
     @GET("search/{name}")
-    suspend fun findSuperheroByName(@Path("name") query: String): SuperheroResponse
+    suspend fun findSuperheroesByName(@Path("name") query: String): SuperheroResponse
 
 
     @GET("superhero-id")
