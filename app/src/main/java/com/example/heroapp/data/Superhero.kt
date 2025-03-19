@@ -1,5 +1,6 @@
 package com.example.heroapp.data
 
+import com.example.heroapp.R
 import com.google.gson.annotations.SerializedName
 
 
@@ -14,8 +15,17 @@ class Superhero (
     val biography: Biography,
     val work: Work,
     val appearance: Appearance,
+    val powerstats: Stats,
     val image: Image
-)
+) {
+    fun getAlignmentColor(): Int {
+        return when (biography.alignment) {
+            "good" -> R.color.alignment_color_good
+            "bad" -> R.color.alignment_color_bad
+            else -> R.color.alignment_color_neutral
+        }
+    }
+}
 
 class Biography (
     val publisher: String,
@@ -45,5 +55,14 @@ class Appearance (
         return height[1]
     }
 }
+
+class Stats(
+    val intelligence: String,
+    val strength: String,
+    val speed: String,
+    val durability: String,
+    val power: String,
+    val combat: String
+)
 
 class Image (val url: String)

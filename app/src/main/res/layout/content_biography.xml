@@ -70,7 +70,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             tools:text="GOOD"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
 
     </LinearLayout>
 

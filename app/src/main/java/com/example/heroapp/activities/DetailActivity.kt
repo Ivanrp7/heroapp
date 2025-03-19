@@ -76,19 +76,37 @@ class DetailActivity : AppCompatActivity() {
         binding.biographyContent.publisherTextView.text = superhero.biography.publisher
         binding.biographyContent.placeOfBirthTextView.text = superhero.biography.placeOfBirth
         binding.biographyContent.alignmentTextView.text = superhero.biography.alignment
+        binding.biographyContent.alignmentTextView.setTextColor(getColor(superhero.getAlignmentColor()))
 
         binding.biographyContent.occupationTextView.text = superhero.work.occupation
         binding.biographyContent.baseTextView.text = superhero.work.base
 
         // Appearance
-        binding.appearanceContent.raceTextView.text = superhero.appearance.race
-        binding.appearanceContent.genderTextView.text = superhero.appearance.gender
-        binding.appearanceContent.eyeColorTextView.text = superhero.appearance.eyeColor
-        binding.appearanceContent.hairColorTextView.text = superhero.appearance.hairColor
-        binding.appearanceContent.weightTextView.text = superhero.appearance.getWeightKg()
-        binding.appearanceContent.heightTextView.text = superhero.appearance.getHeightCm()
+        with(superhero.appearance) {
+            binding.appearanceContent.raceTextView.text = race
+            binding.appearanceContent.genderTextView.text = gender
+            binding.appearanceContent.eyeColorTextView.text = eyeColor
+            binding.appearanceContent.hairColorTextView.text = hairColor
+            binding.appearanceContent.weightTextView.text = getWeightKg()
+            binding.appearanceContent.heightTextView.text = getHeightCm()
+        }
 
         // Stats
+        with(superhero.powerstats) {
+            binding.statsContent.intelligenceTextView.text = "${intelligence.toIntOrNull() ?: 0}"
+            binding.statsContent.strengthTextView.text = "${strength.toIntOrNull() ?: 0}"
+            binding.statsContent.speedTextView.text = "${speed.toIntOrNull() ?: 0}"
+            binding.statsContent.durabilityTextView.text = "${durability.toIntOrNull() ?: 0}"
+            binding.statsContent.powerTextView.text = "${power.toIntOrNull() ?: 0}"
+            binding.statsContent.combatTextView.text = "${combat.toIntOrNull() ?: 0}"
+
+            binding.statsContent.intelligenceProgressBar.progress = intelligence.toIntOrNull() ?: 0
+            binding.statsContent.strengthProgressBar.progress = strength.toIntOrNull() ?: 0
+            binding.statsContent.speedProgressBar.progress = speed.toIntOrNull() ?: 0
+            binding.statsContent.durabilityProgressBar.progress = durability.toIntOrNull() ?: 0
+            binding.statsContent.powerProgressBar.progress = power.toIntOrNull() ?: 0
+            binding.statsContent.combatProgressBar.progress = combat.toIntOrNull() ?: 0
+        }
     }
 
     fun getRetrofit(): SuperheroService {
@@ -111,6 +129,7 @@ class DetailActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+
             }
         }
     }
