@@ -8,4 +8,12 @@
     <color name="alignment_color_bad">#F44336</color>
     <color name="alignment_color_neutral">#4C8B94</color>
 
+    <color name="intelligence_color">#00BCD4</color>
+    <color name="strength_color">#4CAF50</color>
+    <color name="speed_color">#3F51B5</color>
+    <color name="durability_color">#FF9800</color>
+    <color name="power_color">#CB00FF</color>
+    <color name="combat_color">#FF0000</color>
+
+
 </resources>
